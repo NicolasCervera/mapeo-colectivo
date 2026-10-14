@@ -174,7 +174,6 @@ function App() {
                 <button className="territory-pin" onClick={() => setSelectedTerritoryPin("fincas")}><span>●</span><div><strong>Fincas y áreas rurales cercanas</strong><small>Referencias territoriales para verificar durante el recorrido.</small></div><b>⌖</b></button>
                 <button className="territory-pin" onClick={() => setSelectedTerritoryPin("represas")}><span>●</span><div><strong>Represas / reservorios del sector</strong><small>Ubicación exacta a confirmar con el relevamiento.</small></div><b>⌖</b></button>
               </div>
-              <p className="map-note"><span className="note-icon">⌖</span><span>El mapa satelital está centrado en las coordenadas de la escuela tomadas del enlace que compartiste. Los pines de Betania, fincas y represas son referencias visuales orientativas, no relevamientos GPS exactos. El pin de la escuela abre el mapeo institucional original.</span></p>
             </div>
           </motion.section>
         )}
