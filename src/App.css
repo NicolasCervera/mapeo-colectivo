@@ -1,0 +1,90 @@
+/* Portada académica y mapa territorial */
+.cover-screen {
+  color: #fff;
+  background: #111c1b url('/fotos/portada.jpeg') center / cover no-repeat;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cover-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(10, 23, 22, .94), rgba(12, 25, 24, .76) 58%, rgba(10, 23, 22, .9));
+  z-index: 0;
+}
+.cover-grid { position:absolute; z-index:0; inset:0; opacity:.18; background-image:linear-gradient(rgba(255,255,255,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.13) 1px,transparent 1px); background-size:64px 64px; mask-image:linear-gradient(to bottom,black,transparent 95%); }
+.cover-topbar { position:relative; z-index:1; }
+.cover-content { position:relative; z-index:1; width:min(920px,calc(100% - 48px)); margin:42px auto 60px; }
+.cover-content h1 { font:500 clamp(3.4rem,8vw,7.2rem)/.98 "Playfair Display",Georgia,serif; letter-spacing:-.055em; max-width:1000px; margin:26px 0 22px; }
+.cover-content h1 span { display:block; font:500 clamp(1.2rem,2.6vw,2.1rem)/1.25 "DM Sans",Arial,sans-serif; letter-spacing:-.025em; max-width:690px; margin-top:22px; color:#e5e9e4; }
+.cover-description { max-width:630px; color:#c4ceca; line-height:1.75; font-size:clamp(1rem,1.5vw,1.15rem); }
+.academic-card { max-width:620px; margin:28px 0 28px; padding:22px 24px; border:1px solid rgba(255,255,255,.17); border-radius:18px; background:rgba(255,255,255,.045); backdrop-filter:blur(8px); }
+.academic-label { display:block; font-size:10px; font-weight:700; letter-spacing:.16em; color:#e8b94e; margin-bottom:8px; }
+.academic-card > strong { font-size:17px; font-weight:600; }
+.team-label { margin-top:20px; }
+.team-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 18px; color:#e1e7e3; font-size:14px; }
+.hero-footer { position:relative; z-index:1; }
+.environment-screen { background:var(--paper); color:var(--ink); }
+.environment-map-wrap { padding-bottom:64px; }
+.environment-map-card { position:relative; height:clamp(350px,56vw,620px); border-radius:22px; overflow:hidden; background:#e4e8e3; border:1px solid var(--line); box-shadow:var(--shadow); }
+.environment-map-card iframe { width:100%; height:100%; border:0; display:block; }
+.environment-map-fallback { position:absolute; left:14px; bottom:14px; max-width:300px; padding:12px 15px; background:rgba(255,255,255,.95); border:1px solid var(--line); border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,.1); font-size:12px; }
+.environment-map-fallback p { margin:6px 0; line-height:1.5; }
+.environment-map-fallback a { color:#265c4c; font-weight:700; text-decoration:none; }
+.map-pin { position:absolute; z-index:4; width:36px; height:36px; border:3px solid #fff; border-radius:50% 50% 50% 4px; transform:translate(-50%,-50%) rotate(-45deg); background:#d9a83d; color:#17211f; font-weight:800; box-shadow:0 5px 16px #0004; cursor:pointer; }
+.map-pin::first-letter { transform:rotate(45deg); }
+.pin-school { left:52%; top:48%; background:#1b2927; color:white; }
+.pin-betania { left:37%; top:35%; }
+.pin-fincas { left:68%; top:32%; }
+.pin-represas { left:73%; top:65%; }
+.map-pin-info { position:absolute; z-index:6; top:16px; right:16px; width:min(310px,calc(100% - 32px)); padding:17px 18px; border-radius:14px; background:white; box-shadow:0 12px 35px #0002; }
+.map-pin-info p { margin:7px 0 0; color:var(--muted); font-size:13px; line-height:1.5; }
+.map-pin-info button { float:right; border:0; background:#edf0ec; border-radius:50%; width:26px; height:26px; cursor:pointer; font-size:18px; }
+.territory-pins { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:18px; }
+.territory-pin { display:flex; align-items:center; gap:13px; padding:15px 17px; border:1px solid var(--line); border-radius:14px; background:white; text-decoration:none; color:var(--ink); text-align:left; cursor:pointer; min-width:0; }
+.territory-pin > span { color:#c59425; font-size:23px; }
+.territory-pin div { flex:1; min-width:0; }
+.territory-pin strong,.territory-pin small { display:block; }
+.territory-pin strong { font-size:14px; }
+.territory-pin small { color:var(--muted); margin-top:4px; font-size:12px; line-height:1.4; }
+.territory-pin b { font-size:19px; }
+.school-pin { border-color:rgba(217,168,61,.65); }
+.footer-link { color:#fff; background:transparent; border:0; cursor:pointer; font:inherit; }
+@media(max-width:640px) {
+ .cover-content { width:calc(100% - 32px); margin:28px auto 42px; }
+ .cover-content h1 { font-size:clamp(3rem,15vw,4.6rem); }
+ .academic-card { padding:18px; }
+ .team-grid { grid-template-columns:1fr; gap:9px; }
+ .territory-pins { grid-template-columns:1fr; }
+ .environment-map-card { height:440px; border-radius:15px; }
+ .map-pin { width:32px; height:32px; }
+ .environment-map-fallback { max-width:calc(100% - 28px); }
+ .map-header { padding-top:30px; }
+ .cover-screen .hero-footer { gap:10px; flex-wrap:wrap; }
+}
+.leaflet-map { width:100%; height:100%; z-index:1; }
+.map-help-chip { position:absolute; z-index:500; top:14px; left:14px; padding:9px 12px; border-radius:999px; background:rgba(255,255,255,.94); color:#38423f; font-size:12px; box-shadow:0 4px 15px #0002; pointer-events:none; }
+
+/* Garantiza un área visible para el mapa interactivo de Leaflet. */
+.leaflet-map { display:block; width:100%; height:100%; min-height:350px; background:#e4e8e3; }
+.environment-map-card { min-height:350px; }
+.environment-map-card .leaflet-container { width:100%; height:100%; min-height:350px; font-family:"DM Sans",Arial,sans-serif; }
+
+/* Mapa territorial: Google Maps satelital como base estable, con pines propios. */
+.territory-google-map { isolation:isolate; }
+.territory-google-map iframe { position:absolute; inset:0; z-index:1; width:100%; height:100%; border:0; display:block; }
+.territory-google-map .map-pin { z-index:5; display:flex; align-items:center; justify-content:center; width:38px; height:38px; padding:0; border:3px solid #fff; border-radius:50%; transform:translate(-50%,-50%); background:#d9a83d; color:#17211f; font-size:13px; font-weight:800; box-shadow:0 5px 16px #0005; cursor:pointer; }
+.territory-google-map .pin-school { left:52%; top:48%; background:#1b2927; color:#fff; }
+.territory-google-map .pin-betania { left:38%; top:36%; }
+.territory-google-map .pin-fincas { left:69%; top:32%; }
+.territory-google-map .pin-represas { left:72%; top:67%; }
+.territory-google-map .map-help-chip { z-index:6; }
+.territory-google-map .map-pin-info { z-index:7; }
+.territory-google-map .map-pin-info > button:first-child { float:right; }
+.territory-google-map .map-pin-info .map-school-action { float:none; width:auto; height:auto; padding:9px 12px; margin-top:12px; border-radius:8px; background:#1b2927; color:#fff; font-size:12px; font-weight:700; cursor:pointer; }
+@media(max-width:640px) {
+  .territory-google-map .map-pin { width:34px; height:34px; }
+  .territory-google-map .map-pin-info { top:58px; right:10px; width:min(300px,calc(100% - 20px)); }
+}
