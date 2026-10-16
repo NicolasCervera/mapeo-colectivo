@@ -880,6 +880,12 @@ h1 span {
    CELULAR
 ================================== */
 
+
+
+/* ==================================
+   CELULAR (CORREGIDO PARA MAPA)
+================================== */
+
 @media (max-width: 640px) {
 
   .content-width {
@@ -930,25 +936,37 @@ h1 span {
     display: none;
   }
 
+  /* --- AJUSTES DEL MAPA Y CONTENEDOR (CORRECCIÓN DE PINES VOLADORES) --- */
   .map-canvas {
-    min-height: 360px;
+    min-height: auto !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
   }
 
+  .croquis-image {
+    width: 100%;
+    height: auto !important;
+    display: block;
+  }
+
+  /* --- PINES MÁS PROPORCIONALES PARA PANTALLAS PEQUEÑAS --- */
   .marker-core {
-    width: 35px;
-    height: 35px;
-    font-size: 10px;
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 9px !important;
+    border-width: 2px !important;
   }
 
   .marker-halo {
-    width: 57px;
-    height: 57px;
+    width: 38px !important;
+    height: 38px !important;
   }
 
   .marker-label {
     display: none;
   }
 
+  /* --- DETALLE Y LIGHTBOX --- */
   .detail-copy h2 {
     font-size: 49px;
   }
