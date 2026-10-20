@@ -96,7 +96,7 @@ export const espacios: Espacio[] = [
     categoria: "ENTRADA",
     descripcion: "Acceso principal a la institución educativa.",
     observaciones: "Punto de recepción, llegada y control de ingreso.",
-    foto: "/fotos/entrada.jpeg",
+    foto: "./public/fotos/entrada.jpeg",
     x: 76.5,
     y: 18
   },
