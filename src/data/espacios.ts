@@ -36,7 +36,7 @@ export const espacios: Espacio[] = [
     categoria: "PATIOS",
     descripcion: "Área principal de recreación, esparcimiento y actividades al aire libre de los estudiantes.",
     observaciones: "Espacio abierto equipado con áreas verdes y bancos perimetrales.",
-    foto: "/fotos/patio.jpeg",
+    foto: "/fotos/patio externo.jpeg",
     x: 13,
     y: 25
   },
@@ -86,7 +86,7 @@ export const espacios: Espacio[] = [
     categoria: "AULAS",
     descripcion: "Aula correspondiente al último año del ciclo orientado.",
     observaciones: "Sector próximo a las áreas administrativas y de circulación.",
-    foto: "/fotos/5anio.jpeg",
+    foto: "/fotos/5to año.jpeg",
     x: 33,
     y: 45
   },
@@ -96,7 +96,7 @@ export const espacios: Espacio[] = [
     categoria: "ENTRADA",
     descripcion: "Acceso principal a la institución educativa.",
     observaciones: "Punto de recepción, llegada y control de ingreso.",
-    foto: "/fotos/entrada.jpeg",
+    foto: "./public/fotos/entrada.jpeg",
     x: 76.5,
     y: 18
   },
@@ -106,7 +106,7 @@ export const espacios: Espacio[] = [
     categoria: "PATIOS",
     descripcion: "Pasillo central y espacio distribuidor de circulación institucional.",
     observaciones: "Caracterizado por su coloración distintiva en el plano arquitectónico.",
-    foto: "/fotos/sector_morado.jpeg",
+    foto: "/fotos/patio interno.jpeg",
     x: 50,
     y: 45
   },
@@ -136,7 +136,7 @@ export const espacios: Espacio[] = [
     categoria: "SALONES",
     descripcion: "Salón de uso generales.",
     observaciones: "Salón amplio para actividades diversas, reuniones y eventos escolares.",
-    foto: "/fotos/direccion.jpeg",
+    foto: "/fotos/sum.jpeg",
     x: 37,
     y: 72
   },
