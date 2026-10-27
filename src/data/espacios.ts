@@ -23,9 +23,9 @@ export type FiltroCategoria = typeof categorias[number];
 
 export const info = {
   anio: "2026",
-  materia: "Taller Práctica Docente I",
+  materia: "Práctica Docente I",
   titulo: "Mapeo colectivo",
-  subtitulo: "Escuela, territorio y experiencias cotidianas",
+  subtitulo: "Contexto, Comunidad y Escuela",
   escuela: "Colegio Secundario Héroes de Malvinas N.º 5207",
 };
 
