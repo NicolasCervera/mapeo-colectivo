@@ -391,7 +391,7 @@ function App() {
               <span className="eyebrow">IES N.º 6017 · FORMACIÓN DOCENTE</span>
               <h1>
                 Mapeo colectivo
-                <span>Escuela, territorio y experiencias cotidianas</span>
+                <span>Contexto, Comunidad y Escuela</span>
               </h1>
               <p className="cover-description">
                 Un recorrido situado por el entorno de Betania y los espacios de
@@ -449,7 +449,7 @@ function App() {
                 <span>MAPEO</span>
               </button>
               <div className="topbar-title">
-                <small>Taller Práctica Docente I</small>
+                <small>Práctica Docente I</small>
                 <strong>Entorno de Betania</strong>
               </div>
               <button className="text-button" onClick={() => setView("cover")}>
