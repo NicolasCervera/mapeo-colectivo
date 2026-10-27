@@ -151,3 +151,46 @@ export const espacios: Espacio[] = [
     y: 15
   }
 ];
+
+export const ZONAS_CRITICAS = [
+  {
+    id: 'critica-1',
+    titulo: 'Zona Crítica 1: Vulnerabilidad Vial y Anegamiento (RP N° 11)',
+    tipo: 'Riesgo Vial y Climático',
+    coords: [-24.6915, -65.1376],
+    radio: 120,
+    color: '#ef4444',
+    descripcion:
+      'Tramo de acceso directo a la escuela sobre la Ruta Provincial N° 11 y caminos vecinales de tierra. En días de lluvia presenta anegamiento y barro que dificultan el transporte público y rural, generando ausentismo estudiantil y docente. Además, el tránsito pesado de camiones y maquinaria agrícola sin dársenas peatonales implica riesgo vial en horarios de ingreso y salida.'
+  },
+  {
+    id: 'critica-2',
+    titulo: 'Zona Crítica 2: Exposición Ambiental por Actividad Agrícola Intensiva',
+    tipo: 'Problemática Socioambiental',
+    coords: [-24.6902, -65.1352],
+    radio: 180,
+    color: '#f97316',
+    descripcion:
+      'Perímetro de fincas productivas colindantes al predio escolar. La cercanía inmediata a los lotes de cultivo expone a la comunidad educativa a la deriva de fumigaciones con agroquímicos, polvo en suspensión durante el movimiento de suelo y humo por quema de rastrojos o pastizales.'
+  },
+  {
+    id: 'critica-3',
+    titulo: 'Zona Crítica 3: Riesgo Físico y Sanitario en Represas de Riego',
+    tipo: 'Riesgo Físico y Ambiental',
+    coords: [-24.6942, -65.1398],
+    radio: 140,
+    color: '#eab308',
+    descripcion:
+      'Reservorios de agua y canales de riego cercanos a los recorridos cotidianos. La falta de cerramientos perimetrales seguros y señalización representa un peligro físico para niños y jóvenes, además de constituir potenciales focos de proliferación de vectores sanitarios (como el mosquito del dengue) en época estival.'
+  },
+  {
+    id: 'critica-4',
+    titulo: 'Zona Crítica 4: Brecha Digital y Limitación de Conectividad Rural',
+    tipo: 'Problemática Estructural / Pedagógica',
+    coords: [-24.6923, -65.1365],
+    radio: 110,
+    color: '#a855f7',
+    descripcion:
+      'Restricción de ancho de banda en el entorno rural (limitado a 1-2 Mbps por dispositivo en el piso tecnológico escolar mediante enlace de Nubicom) e inestabilidad de señal móvil en las fincas aledañas, lo que condiciona el uso continuo de recursos interactivos en el aula y dificulta la continuidad pedagógica virtual cuando el clima impide asistir.'
+  }
+];

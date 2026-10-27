@@ -23,6 +23,7 @@ interface PuntoTerritorio {
   lat: number;
   lng: number;
   esEscuela?: boolean;
+  esCritica?: boolean;
 }
 
 const PUNTOS_TERRITORIO: PuntoTerritorio[] = [
@@ -96,6 +97,50 @@ const PUNTOS_TERRITORIO: PuntoTerritorio[] = [
       "Campos abiertos, lotes agrícolas, cortinas forestales y reservorios de agua que rodean el paraje de Betania y el predio del colegio.",
     lat: -24.6995,
     lng: -65.1395,
+  },
+  {
+    id: "zc-vial",
+    codigo: "ZC1",
+    nombre: "Zona Crítica 1: Vulnerabilidad Vial y Anegamiento (RP N.º 11)",
+    subtitulo: "Problemática de acceso, tránsito pesado y barro en días de lluvia.",
+    descripcion:
+      "Durante la época estival de lluvias, el deterioro de la calzada en la Ruta Provincial N.º 11 y el barro en los caminos secundarios de tierra dificultan la transitabilidad y el transporte, provocando ausentismo de estudiantes y docentes. Asimismo, la circulación de camiones de carga y maquinaria agrícola sin dársenas peatonales seguras representa un riesgo vial en horarios de entrada y salida.",
+    lat: -24.6914,
+    lng: -65.1378,
+    esCritica: true,
+  },
+  {
+    id: "zc-ambiental",
+    codigo: "ZC2",
+    nombre: "Zona Crítica 2: Impacto Socioambiental por Actividad Agrícola",
+    subtitulo: "Riesgo ambiental por fumigaciones, polvo y quema en fincas lindantes.",
+    descripcion:
+      "La colindancia directa del establecimiento con parcelas de cultivo intensivo expone a la comunidad educativa a riesgos socioambientales como la deriva de fumigaciones con agroquímicos, la presencia de tierra y polvo en suspensión durante el arado y el humo proveniente de la quema de pastizales o rastrojos.",
+    lat: -24.6902,
+    lng: -65.1348,
+    esCritica: true,
+  },
+  {
+    id: "zc-represas",
+    codigo: "ZC3",
+    nombre: "Zona Crítica 3: Riesgo Físico y Sanitario en Represas",
+    subtitulo: "Reservorios de agua sin vallado preventivo y vectores sanitarios.",
+    descripcion:
+      "Los espejos de agua de riego y canales cercanos a los recorridos rurales carecen en varios tramos de cerramientos perimetrales o señalización preventiva, constituyendo un peligro físico para niños y jóvenes, además de actuar como potenciales focos de reproducción de vectores sanitarios (como el mosquito transmisor del dengue) en épocas cálidas y húmedas.",
+    lat: -24.6968,
+    lng: -65.1408,
+    esCritica: true,
+  },
+  {
+    id: "zc-conectividad",
+    codigo: "ZC4",
+    nombre: "Zona Crítica 4: Brecha Digital y Limitación de Conectividad",
+    subtitulo: "Ancho de banda restringido e inestabilidad de red en el entorno rural.",
+    descripcion:
+      "Condicionamiento estructural de conectividad en el paraje rural. Si bien el colegio cuenta con enlace provincial (Nubicom) y piso tecnológico, la restricción de velocidad (1 a 2 Mbps por dispositivo) y la escasa señal en los hogares de las fincas limitan el uso continuo de herramientas interactivas y dificultan sostener la continuidad pedagógica virtual cuando el clima impide asistir.",
+    lat: -24.6924,
+    lng: -65.1392,
+    esCritica: true,
   },
 ];
 
@@ -243,19 +288,41 @@ function App() {
       }).addTo(currentMap);
 
       PUNTOS_TERRITORIO.forEach((punto) => {
-        const bgColor = punto.esEscuela ? "#1b2927" : "#d9a83d";
-        const textColor = punto.esEscuela ? "#ffffff" : "#17211f";
+        const bgColor = punto.esEscuela
+          ? "#1b2927"
+          : punto.esCritica
+            ? "#dc2626"
+            : "#d9a83d";
+        const textColor =
+          punto.esEscuela || punto.esCritica ? "#ffffff" : "#17211f";
+
+        if (punto.esCritica) {
+          const criticalArea = L.circle([punto.lat, punto.lng], {
+            radius: 130,
+            color: "#ef4444",
+            fillColor: "#ef4444",
+            fillOpacity: 0.2,
+            weight: 2,
+            dashArray: "5, 5",
+          }).addTo(currentMap);
+
+          criticalArea.on("click", () => {
+            setSelectedTerritoryPin((prev) =>
+              prev === punto.id ? null : punto.id,
+            );
+          });
+        }
 
         const icon = L.divIcon({
           className: "custom-territory-leaflet-pin",
-          html: `<button type="button" aria-label="${punto.nombre}" style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;border:3px solid #fff;border-radius:50%;background:${bgColor};color:${textColor};font-family:'DM Sans',Arial,sans-serif;font-size:12px;font-weight:800;box-shadow:0 5px 16px rgba(0,0,0,0.45);cursor:pointer;">${punto.codigo}</button>`,
+          html: `<button type="button" aria-label="${punto.nombre}" style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;border:3px solid #fff;border-radius:50%;background:${bgColor};color:${textColor};font-family:'DM Sans',Arial,sans-serif;font-size:11px;font-weight:800;box-shadow:0 5px 16px rgba(0,0,0,0.45);cursor:pointer;">${punto.codigo}</button>`,
           iconSize: [38, 38],
           iconAnchor: [19, 19],
         });
 
         const marker = L.marker([punto.lat, punto.lng], {
           icon,
-          zIndexOffset: punto.esEscuela ? 1000 : 100,
+          zIndexOffset: punto.esEscuela ? 1000 : punto.esCritica ? 500 : 100,
         }).addTo(currentMap);
 
         marker.bindTooltip(punto.nombre, {
@@ -488,13 +555,32 @@ function App() {
                   Seleccioná un pin para ver qué representa
                 </div>
                 {selectedTerritoryPoint && (
-                  <div className="map-pin-info" role="status">
+                  <div
+                    className={`map-pin-info ${
+                      selectedTerritoryPoint.esCritica ? "critical-pin" : ""
+                    }`}
+                    role="status"
+                  >
                     <button
                       aria-label="Cerrar descripción"
                       onClick={() => setSelectedTerritoryPin(null)}
                     >
                       ×
                     </button>
+                    {selectedTerritoryPoint.esCritica && (
+                      <small
+                        style={{
+                          display: "inline-block",
+                          marginBottom: "4px",
+                          color: "#dc2626",
+                          fontWeight: 800,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.04em",
+                        }}
+                      >
+                        ⚠️ Zona Crítica / Problemática Territorial
+                      </small>
+                    )}
                     <strong>{selectedTerritoryPoint.nombre}</strong>
                     <p>{selectedTerritoryPoint.descripcion}</p>
                     {selectedTerritoryPoint.esEscuela && (
@@ -517,10 +603,16 @@ function App() {
                     key={punto.id}
                     className={`territory-pin ${
                       punto.esEscuela ? "school-pin" : ""
-                    }`}
+                    } ${punto.esCritica ? "critical-pin" : ""}`}
                     onClick={() => focusTerritoryPin(punto)}
                   >
-                    <span>●</span>
+                    <span
+                      style={
+                        punto.esCritica ? { color: "#dc2626" } : undefined
+                      }
+                    >
+                      {punto.esCritica ? "⚠️" : "●"}
+                    </span>
                     <div>
                       <strong>{punto.nombre}</strong>
                       <small>{punto.subtitulo}</small>
